@@ -1,13 +1,23 @@
 <!--index.wxml-->
 <view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
+	<!-- <view class="userinfo">
+		<button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+		<block wx:else>
+			<image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+			<text class="userinfo-nickname">{{userInfo.nickName}}</text>
+		</block>
+	</view>
+	<view class="usermotto">
+		<text class="user-motto">{{motto}}</text>
+	</view> -->
+	<view class="device" hover-class="device_hover" wx:for='{{devices}}' wx:key="deviceId" bindtap="navigate">
+		<image class="deviceIcon" src="../../images/bluetooth.svg"></image>
+		<view class="device1">
+			<text class="deviceId">{{item.deviceId}}</text>
+			<text class="deviceName">{{item.name || item.localName}}</text>
+		</view>
+	</view>
+</view>
+<view class="mask">
+	<button class="buttonScan" type="primary" bindtap="startScan" style="width:100%;height:80rpx">开始扫描</button>
 </view>

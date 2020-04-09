@@ -1,12 +1,13 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/device/device",
     "pages/logs/logs"
   ],
   "window": {
-    "backgroundTextStyle": "light",
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "BLE 调试工具",
     "navigationBarTextStyle": "black"
   },
   "style": "v2",

@@ -2,18 +2,44 @@
 // 获取应用实例
 const app = getApp<IAppOption>()
 
+function inArray(arr: string | any[], key: string | number, val: any) {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i][key] === val) {
+      return i;
+    }
+  }
+  return -1;
+}
+
 Page({
+  mDiscoveryStarted: false,
   data: {
-    motto: 'Hello World',
+    motto: 'Hello WeChat',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    devices: [
+      // {
+      //   deviceId: 'CA59B12E-A032-4E30-8F3B-2A0FBAEF30AA',
+      //   name: 'MOCK BLE'
+      // }
+    ]
   },
   // 事件处理函数
   bindViewTap() {
-    wx.navigateTo({
-      url: '../logs/logs',
+    wx.scanCode({
+      scanType: ["qrCode"],
+      success: res => {
+        const option: WechatMiniprogram.ShowToastOption = {
+          "title": res.result,
+          "duration": 5000
+        }
+        wx.showToast(option);
+      }
     })
+    // wx.navigateTo({
+    //   url: '../logs/logs',
+    // })
   },
   onLoad() {
     if (app.globalData.userInfo) {
@@ -51,4 +77,39 @@ Page({
       hasUserInfo: true,
     })
   },
+  startScan() {
+    const option: WechatMiniprogram.OpenBluetoothAdapterOption = {
+      success: () => this.startDiscovery()
+    }
+    wx.openBluetoothAdapter(option)
+  },
+  startDiscovery() {
+    if (this.mDiscoveryStarted) {
+      return;
+    }
+    this.mDiscoveryStarted = true
+    const callback: WechatMiniprogram.OnBluetoothDeviceFoundCallback = res => {
+      res.devices.forEach(device => {
+        const data: { [key: string]: any } = {};
+        const i = inArray(this.data.devices, 'deviceId', device.deviceId);
+        if (i === -1) {
+          const length = this.data.devices.length;
+          data[`devices[${length}]`] = device;
+        } else {
+          data[`devices[${i}]`] = device;
+        }
+        this.setData(data);
+      });
+    }
+    const option: WechatMiniprogram.StartBluetoothDevicesDiscoveryOption = {
+      success: () => wx.onBluetoothDeviceFound(callback)
+    }
+    wx.startBluetoothDevicesDiscovery(option);
+  },
+  navigate() {
+    const option: WechatMiniprogram.NavigateToOption = {
+      url: '../device/device'
+    };
+    wx.navigateTo(option);
+  }
 })

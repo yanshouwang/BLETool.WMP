@@ -1,4 +1,15 @@
 /**app.wxss**/
+@import 'fonts/nanum.wxss';
+
+page {
+  background-color: whitesmoke;
+  font-family: 'Nanum Gothic Coding', monospace;
+}
+
+.hover {
+  background-color: gray;
+}
+
 .container {
   height: 100%;
   display: flex;
@@ -7,4 +18,4 @@
   justify-content: space-between;
   padding: 200rpx 0;
   box-sizing: border-box;
-} 
+}

@@ -1,4 +1,73 @@
 /**index.wxss**/
+.container {
+  padding: 20rpx;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+.device {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+  background-color: white;
+  border-radius: 12rpx;
+  padding: 12rpx;
+}
+
+.device:last-child {
+  margin-bottom: 120rpx;
+}
+
+.device_hover {
+  background-color: lightgray;
+}
+
+.deviceIcon {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.device1 {
+  height: 120rpx;
+  width: calc(100% - 80rpx);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-evenly;
+  margin-left: 20rpx;
+}
+
+.deviceId {
+  max-width: 100%;
+  font-size: 28rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.deviceId::before {
+  content: 'UUID: ';
+}
+
+.deviceName::before {
+  content: '名称: ';
+}
+
+.mask {
+  position: fixed;
+  bottom: 0rpx;
+  left: 0rpx;
+  right: 0rpx;
+  background-color: white;
+  padding: 20rpx;
+}
+
+.buttonScan {
+  border-radius: 40rpx;
+}
+
 .userinfo {
   display: flex;
   flex-direction: column;
@@ -14,8 +83,4 @@
 
 .userinfo-nickname {
   color: #aaa;
-}
-
-.usermotto {
-  margin-top: 200px;
 }
