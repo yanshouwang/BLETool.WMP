@@ -9,9 +9,11 @@
   "keywords": [],
   "author": "",
   "license": "",
-  "dependencies": {},
+  "dependencies": {
+    "lottie-minicomponent": "^1.0.1"
+  },
   "devDependencies": {
-    "miniprogram-api-typings": "^2.8.3-1",
+    "miniprogram-api-typings": "^2.10.4",
     "typescript": "^3.3.3333"
   }
 }

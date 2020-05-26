@@ -2,20 +2,15 @@
 @import 'fonts/nanum.wxss';
 
 page {
-  background-color: whitesmoke;
+  height: 100%;
   font-family: 'Nanum Gothic Coding', monospace;
 }
 
-.hover {
-  background-color: gray;
-}
-
 .container {
-  height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 200rpx 0;
+  justify-content: flex-start;
+  align-items: stretch;
+  padding: 40rpx;
   box-sizing: border-box;
 }

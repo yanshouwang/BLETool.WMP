@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "lottie": "../../miniprogram_npm/lottie-minicomponent/lottie"
+  },
+  "enablePullDownRefresh": true
 }

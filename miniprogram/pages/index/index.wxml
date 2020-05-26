@@ -1,23 +1,18 @@
 <!--index.wxml-->
-<view class="container">
-	<!-- <view class="userinfo">
-		<button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-		<block wx:else>
-			<image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-			<text class="userinfo-nickname">{{userInfo.nickName}}</text>
-		</block>
-	</view>
-	<view class="usermotto">
-		<text class="user-motto">{{motto}}</text>
-	</view> -->
-	<view class="device" hover-class="device_hover" wx:for='{{devices}}' wx:key="deviceId" bindtap="navigate">
-		<image class="deviceIcon" src="../../images/bluetooth.svg"></image>
-		<view class="device1">
-			<text class="deviceId">{{item.deviceId}}</text>
-			<text class="deviceName">{{item.name || item.localName}}</text>
-		</view>
-	</view>
+<view wx:if="{{!available}}" class="container0">
 </view>
-<view class="mask">
-	<button class="buttonScan" type="primary" bindtap="startScan" style="width:100%;height:80rpx">开始扫描</button>
+<view wx:elif="{{devices.length === 0}}" class="container0">
+	<lottie id="lottie" data="{{rings}}" />
+	<text class="description">正在搜索设备...</text>
+</view>
+<view wx:else class="container">
+	<view class="device" hover-class="device_hover" wx:for='{{devices}}' wx:key="deviceId" id="{{index}}" bindtap="onTapDevice">
+		<image class="deviceLogo" src="../../images/device.svg"></image>
+		<text class="deviceName">{{item.localName}}</text>
+		<image wx:if="{{item.RSSI<-80}}" class="deviceSignal" src="../../images/signal0.svg"></image>
+		<image wx:elif="{{item.RSSI<-70}}" class="deviceSignal" src="../../images/signal1.svg"></image>
+		<image wx:elif="{{item.RSSI<-60}}" class="deviceSignal" src="../../images/signal2.svg"></image>
+		<image wx:elif="{{item.RSSI<-50}}" class="deviceSignal" src="../../images/signal3.svg"></image>
+		<image wx:else class="deviceSignal" src="../../images/signal4.svg"></image>
+	</view>
 </view>
